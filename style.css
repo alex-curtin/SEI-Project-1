@@ -1,32 +1,63 @@
+body {
+  margin: 0;
+}
+
+/* HEADER SECTION */
 header {
-  background: lightblue;
+  background: pink;
+  width: 100%;
+  height: 150px;
+  position: relative;
 }
 
+#query {
+  margin: auto;
+  width: 400px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+}
+
+#search {
+  margin: auto;
+}
+#query select {
+  margin: auto;
+}
+
+/* MAIN SECTION */
 main {
-  display: block;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+main div {
+
 }
 
-#charts {
-  background: yellow;
-}
-
+/* CHART DISPLAY SECTION */
 #chartDisplay {
-  height: 50px;
-  width: 310px;
+  background: lightblue;
   margin: 0 auto;
   text-align: center;
 }
+
 #chartDisplay h2 {
 font-weight: bolder;
 margin: 0 auto;
 }
-
-#query {
-  margin-bottom: 30px;
-  display: inline;
+/* CHORD CONTENT */
+#leftAside {
+  background: honeydew;
+  width: 150px;
+  grid-column-start: 0;
+  grid-column-end: 1;
+  margin: 0 auto;
 }
-#search {
-  margin-bottom: 30px;
+
+#chordContent div {
+
 }
 
 .chart {
@@ -49,6 +80,8 @@ margin: 0 auto;
 .loc {
   background: orange;
   border: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
   text-align: center;
   position: relative;
 }
