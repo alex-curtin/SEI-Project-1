@@ -13,10 +13,13 @@ MVP:
 3. Coerce chord data into data that can be used to create a chord chart
   - This is currently working as it should.
 
-4. Display chord chart
+4. Create chord chart
+  - It currently creates a chart that has starting fret info and fingering info, but doesn't have actual notes assigned to fret positions. I am currently working on a way to fix this.
+
+5. Display chord chart
   - The chart appears but I need to create conditions to alter the appearance based on the starting fret of the chart.
   - The site needs to be styled.
   
-5. Publish site on Surge
+6. Publish site on Surge
 
 Strech: Stretch goals would include: displaying multiple variations for each chord, enabling users to save a list of chords they want to use, suggesting chords to go with the user's saved chords (this may require an additional API).
