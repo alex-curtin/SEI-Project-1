@@ -3,8 +3,8 @@ const notes = document.querySelector('#note');
 const types = document.querySelector('#type');
 const chartDisplay = document.querySelector('#chartDisplay');
 const leftAside = document.querySelector('#leftAside');
-
 const BASE_URL = "https://api.uberchord.com/v1/chords/";
+let startingFret;
 
 //adding options to dropdown menus
 //.replace('b', '&#9837') changes 'b' to the flat symbol
@@ -25,7 +25,8 @@ const typeList = [
   { name: 'min', query: '_m' },
   { name: '7', query: '_7' },
   { name: 'maj7', query: '_maj7' },
-  { name: 'min7', query: '_m7' }
+  { name: 'min7', query: '_m7' },
+  { name: 'add9', query: '_add9' }
 ];
 typeList.forEach((chordType) => {
   types.innerHTML += `<option id=${chordType.query}>${chordType.name}</option>`
@@ -33,18 +34,25 @@ typeList.forEach((chordType) => {
 
 //A function to assign a note to each location on the fretboard
 const assignNotes = (fretboardUnfiltered, stringsArray) => {
-  console.log(fretboardUnfiltered)
   const fretboardFiltered = [];
   stringsArray.forEach((string, i) => {
-    console.log(string.children[i]);
   })
+}
+
+const createFretMarker = (startingFret) => {
+  const fretMarker = document.createElement('div');
+  fretMarker.classList.add('fretMarker');
+  fretMarker.innerHTML = `FRET ${startingFret}`;
+  chartDisplay.append(fretMarker);
 }
 
 
 //creates chord chart - 5 rows (frets), 6 columns (strings)
 //each column has an id of 'string + number'
 //each space is assigned an id of q{num}
-const createChart = () => {
+const createChart = (chordStrings) => {
+  const startingFret = findStartingFret(chordStrings);
+  console.log(startingFret);
   let fretboardUnfiltered = [];
   const chart = document.createElement('div');
   chart.classList.add('chart');
@@ -62,7 +70,14 @@ const createChart = () => {
     for (let j = 0; j < 5; j += 1) {
       const fret = document.createElement('div');
       fret.innerHTML = `${i + j + k}`;
-      fret.classList.add('loc');
+      // this if statement assigns the class 'locOpen' to the 
+      // first row if chart is starting at fret 0.
+      console.log(startingFret);
+      if (startingFret === 0 && j === 0) {
+        fret.classList.add('locOpen');
+      } else {
+        fret.classList.add('loc');
+      }
       fret.id = `q${i + j + k}`;
       string.append(fret);
       fretboardUnfiltered.push(fret);
@@ -71,7 +86,9 @@ const createChart = () => {
     chart.append(string);
     stringsArray.push(string);
   }
-  console.log(stringsArray);
+  if (startingFret > 0) {
+    createFretMarker(startingFret);
+  }
   chartDisplay.append(chart);
   assignNotes(fretboardUnfiltered, stringsArray);
 }
@@ -80,38 +97,40 @@ const createChart = () => {
 //adding fingering notation to chord chart
 //takes an array that represents locations on the fretboard
 //and adds a marker ('<div id='finger'>) on each
-const formation = (fretPositions) => {
-  // const fretPositions = [4, 8, 29];
+const formation = (fretPositions, startingFret) => {
+  // const fretPositions = ['q4', 'q8', 'q29'];
+
   fretPositions.forEach((fretPosition) => {
     const fret = document.querySelector(`#${fretPosition}`);
     const fing = document.createElement('div');
-    fing.classList.add('finger');
+    const num = fretPosition.split('').splice(1, 2).join('');
+    const int = parseInt(num, 10);
+    if ((int + 4) % 5 === 0 && startingFret === 0) {
+      fing.classList.add('openString')
+    } else {
+      fing.classList.add('finger');
+    }
     fret.append(fing);
   })
 }
 // formation();
 
-//Takes API's finger position and string position info and turns it into an
+//Takes API's string position info and turns it into an
 //array that can be interpreted by formation function
 //fingerPostion is not currently being utilized but may be incorporated
 //later
 const createFretPositions = (fingerPositions, stringPositions) => {
   const startingFret = findStartingFret(stringPositions);
-  if (startingFret > 0) {
-    const fretMarker = document.createElement('div');
-    fretMarker.innerHTML = `starting fret: ${startingFret}`;
-    leftAside.append(fretMarker);
-  }
   const fretPositions = [];
   stringPositions.forEach((stringPosition, i) => {
     if (stringPosition !== 'X') {
       const pressString = document.querySelector(`#string${i + 1}`);
       const posInt = (parseInt(stringPosition, 10) - startingFret);
       const location = pressString.children[posInt];
-      fretPositions.push(location.id)
+      fretPositions.push(location.id);
     }
   })
-  formation(fretPositions)
+  formation(fretPositions, startingFret)
 }
 // createFretPositions(["X", "2", "3", "1", "X", "X"], ["0", "2", "2", "1", "0", "0"])
 
@@ -123,13 +142,11 @@ const findStartingFret = (chordStrings) => {
   const onlyNums = chordStrings.filter(chordString => chordString !== 'X');
   const onlyInts = onlyNums.map(num => parseInt(num, 10));
   const highestInt = Math.max(...onlyInts);
-  let startingFret = 0;
+  let startingFretTemp = 0;
   if (highestInt > 4) {
-    startingFret = highestInt - 4;
+    startingFretTemp = highestInt - 4;
   };
-
-  return startingFret;
-
+  return startingFretTemp;
 }
 
 
@@ -145,7 +162,7 @@ const render = (chord) => {
   <h2>${chordName}</h2>
   <p>(${chordTones.replace(/b/g, '&#9837')})</p>`
   chartDisplay.append(el);
-  createChart();
+  createChart(chordStrings);
   createFretPositions(chordFingering, chordStrings);
 }
 
@@ -155,5 +172,6 @@ search.addEventListener('click', async () => {
   const typeSearch = types[types.selectedIndex].id;
   const response = await axios.get(`${BASE_URL}${noteSearch}${typeSearch}`)
   const chord = response.data[0];
+  console.log(chord);
   render(chord);
 })
