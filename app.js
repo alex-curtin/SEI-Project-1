@@ -64,6 +64,8 @@ const createChart = (chordStrings) => {
   //location a unique numerical id
   for (let i = 1; i <= 6; i += 1) {
     const string = document.createElement('div');
+    const stringImg = document.createElement('div');
+    stringImg.classList.add('stringImg');
     // string.innerHTML = `${i}`;
     string.classList.add('string');
     string.id = `string${i}`;
@@ -83,6 +85,7 @@ const createChart = (chordStrings) => {
       fretboardUnfiltered.push(fret);
     }
     k += 4;
+    string.append(stringImg);
     chart.append(string);
     stringsArray.push(string);
   }
