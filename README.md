@@ -3,6 +3,20 @@ Name: Chord Frenzy
 
 API: The project will use the Uberchord API to get notes for a particular chord or chords.
 
-MVP: At a minimum, the app should be able to take two parameters, the root note and the type of chord, and return a visual representation of at least one fingering variation of the chord for guitar. This will require two dropdown menus and a search button. Submitting a search will create an image (or images) of the chord on the bottom of the screen using CSS.
+MVP:
+1. Accept an input of chord root note and type
+  - This is working but the types of chords are currently hard coded. I should be able to get a list of chord types from the API if I can get the API to return an array with more than 10 items.
+  
+2. Return chord data from uberchord API
+  - This is currently working as it should.
+
+3. Coerce chord data into data that can be used to create a chord chart
+  - This is currently working as it should.
+
+4. Display chord chart
+  - The chart appears but I need to create conditions to alter the appearance based on the starting fret of the chart.
+  - The site needs to be styled.
+  
+5. Publish site on Surge
 
 Strech: Stretch goals would include: displaying multiple variations for each chord, enabling users to save a list of chords they want to use, suggesting chords to go with the user's saved chords (this may require an additional API).
