@@ -39,11 +39,11 @@ const assignNotes = (fretboardUnfiltered, stringsArray) => {
   })
 }
 
-const createFretMarker = (startingFret) => {
-  const fretMarker = document.createElement('div');
-  fretMarker.classList.add('fretMarker');
-  fretMarker.innerHTML = `FRET ${startingFret}`;
-  chartDisplay.append(fretMarker);
+const createFretLocation = (startingFret) => {
+  const fretLocation = document.createElement('div');
+  fretLocation.classList.add('fretLocation');
+  fretLocation.innerHTML = `FRET ${startingFret}`;
+  chartDisplay.append(fretLocation);
 }
 
 
@@ -87,7 +87,7 @@ const createChart = (chordStrings) => {
     stringsArray.push(string);
   }
   if (startingFret > 0) {
-    createFretMarker(startingFret);
+    createFretLocation(startingFret);
   }
   chartDisplay.append(chart);
   assignNotes(fretboardUnfiltered, stringsArray);
@@ -115,6 +115,15 @@ const formation = (fretPositions, startingFret) => {
 }
 // formation();
 
+const muteString = (pressString) => {
+  const mute = document.createElement('div');
+  mute.innerHTML = 'X';
+  mute.classList.add('mute');
+  const muteLocation = pressString.firstChild;
+  console.log(muteLocation);
+  muteLocation.append(mute);
+}
+
 //Takes API's string position info and turns it into an
 //array that can be interpreted by formation function
 //fingerPostion is not currently being utilized but may be incorporated
@@ -128,6 +137,9 @@ const createFretPositions = (fingerPositions, stringPositions) => {
       const posInt = (parseInt(stringPosition, 10) - startingFret);
       const location = pressString.children[posInt];
       fretPositions.push(location.id);
+    } else {
+      const pressString = document.querySelector(`#string${i + 1}`);
+      muteString(pressString);
     }
   })
   formation(fretPositions, startingFret)
