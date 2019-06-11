@@ -56,13 +56,18 @@ main {
   /* border: 2px solid black; */
   position: relative;
   text-align: center;
-  padding: 70px;
+  padding: 90px 0;
 }
-#leftAside div {
+.legend {
   position: relative;
-  margin: 0 auto;
+  border: 2px solid transparent;
+  border: 1px solid black;
+  width: 250px;
+  margin: 5px 0;
 }
-#leftAside p {
+
+
+.legend p {
   margin: 10px auto;
 }
 
@@ -154,11 +159,9 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
   left: 17px;
 }
 
-
-/* #leftAside .finger {
-  display: inline;
-  position: absolute;
-} */
+#leftAside .finger {
+  bottom: 25%;
+}
 
 .openString {
   background:white;
@@ -171,6 +174,9 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
   bottom: 5px;
   left: 17px;
 }
+#leftAside .openString {
+  bottom: 25%;
+}
 
 .mute {
   font-weight: bolder;
@@ -179,6 +185,9 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
   bottom: 5px;
   left: 22px;
   font-size: 20px;
+}
+#leftAside .mute {
+  bottom: 20%;
 }
 
 /* STRINGS */
