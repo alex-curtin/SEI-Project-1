@@ -36,12 +36,12 @@ typeList.forEach((chordType) => {
 });
 
 //A function to assign a note to each location on the fretboard
+//Doesn't do anything currently.
 const assignNotes = (fretboardUnfiltered, stringsArray) => {
   const fretboardFiltered = [];
-  stringsArray.forEach((string, i) => {
-  })
 }
 
+//Creates marker that notes starting fret, for non-open chords.
 const createFretLocation = (startingFret) => {
   const fretLocation = document.createElement('div');
   fretLocation.classList.add('fretLocation');

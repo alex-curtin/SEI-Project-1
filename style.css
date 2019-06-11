@@ -64,11 +64,44 @@ main {
   border: 1px solid black;
   width: 250px;
   margin: 5px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
-
-
+.leftAsideFinger {
+  background: blue;
+  border: 5px solid blue;
+  border-radius: 20px;
+  height: 10px;
+  width: 10px;
+  align-self: center;
+  justify-self: flex-end;
+}
+.leftAsideOpenString {
+  background:white;
+  border: 5px solid black;
+  border-radius: 20px;
+  height: 10px;
+  width: 10px;
+  z-index: 4;
+  align-self: center;
+  justify-self: flex-end;
+}
+.leftAsideMute {
+  font-weight: bolder;
+  background-attachment: white;
+  border: 5px solid white;
+  height: 10px;
+  width: 10px;
+  color: red;
+  font-size: 20px;
+  text-align: center;
+  line-height: .5;
+  align-self: center;
+  justify-self: flex-end;
+}
 .legend p {
-  margin: 10px auto;
+  /* margin: 10px auto; */
 }
 
 #rightAside {
@@ -95,6 +128,7 @@ main {
 
   /* CHART SECTION */
 .chart {
+  background: orange;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -119,19 +153,21 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
   position: relative;
+  z-index: 1;
 }
 
 .loc {
   background: orange;
-
-  /* background: transparent; */
+  background: transparent;
   /* border: 1px solid black; */
   border-bottom: 1px solid black;
   border-top: 1px solid black;
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 5;
   color: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
 .locOpen {
@@ -146,7 +182,6 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
 
 
 /* MARKERS */
-
 .finger {
   background: blue;
   border: 5px solid blue;
@@ -156,12 +191,11 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
   z-index: 5;
   position: absolute;
   bottom: 0;
-  left: 17px;
+  /* left: 17px; */
+  /* justify-self: center; */
+  align-self: center;
 }
 
-#leftAside .finger {
-  bottom: 25%;
-}
 
 .openString {
   background:white;
@@ -174,21 +208,23 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
   bottom: 5px;
   left: 17px;
 }
-#leftAside .openString {
-  bottom: 25%;
-}
+
 
 .mute {
   font-weight: bolder;
+  background: white;
+  border: 5px solid white;
+  height: 10px;
+  width: 10px;
   color: red;
   position: absolute;
   bottom: 5px;
   left: 22px;
   font-size: 20px;
+  text-align: center;
+  line-height: .5;
 }
-#leftAside .mute {
-  bottom: 20%;
-}
+
 
 /* STRINGS */
 .string .stringImg {
@@ -201,39 +237,15 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
   box-shadow: 4px 0 2px rgba(27, 27, 27, .5);
   width: 3px;
 }
-/* #string2 .stringImg {
-  width: 9%;
-  right: 41%;
-}
-#string3 .stringImg {
-  width: 8%;
-  right: 42%;
-}
-#string4 .stringImg {
-  width: 7%;
-  right: 43%;
-}
-#string5 .stringImg {
-  width: 6%;
-  right: 44%;
-}
-#string6 .stringImg {
-  width: 5%;
-  right: 45%;
-}  
-#makeString {
-  border-right: 1px solid black;
-  z-index: 5;
-  width: 50%;
-  height: 100%;
-}
-*/
 
 
 @media only screen
-  and (max-width: 770px) {
+  and (max-width: 800px) {
     main {
       flex-direction: column;
+    }
+    header {
+      width: 100vw;
     }
     #leftAside {
       justify-self: flex-start;
@@ -244,18 +256,62 @@ background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%,
       width: 100%;
       height: 50px;
       margin: 0;
+      margin-bottom: 50px;
+      display: flex;
     }
     .legend {
       border: 2px solid transparent;
       border: 1px solid black;
-      width: 250px;
-      margin: 0;
+      width: 33%;
     }
     .chart {
       height: 310px;
       width: 310px;
       margin: 0 auto;
     }
-
-    
+    h1 {
+      text-align: center;
+    }
   }
+
+  @media only screen
+    and (max-width: 575px) {
+      header {
+        background: pink;
+        width: 100%;
+        height: 150px;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      #query {
+        display: flex;
+        flex-direction: column;
+      }      
+      /* .leftAsideFinger {
+        position: relative;
+        align-self: center;
+        justify-self: center;
+      }
+      .leftAsideOpenString {
+        position: relative;
+        align-self: center;
+        justify-self: flex-start;
+      }
+      .leftAsideMute {
+        position: relative;
+        align-self: center;
+        justify-self: flex-end;
+      } */
+      .legend {
+        align-self: flex-start;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 0;
+        padding-bottom: 10px;
+      }
+
+
+    }
