@@ -3,6 +3,10 @@ body {
   font-family: sans-serif;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 /* HEADER SECTION */
 header {
   background: pink;
@@ -28,10 +32,15 @@ h1 {
 
 #search {
   margin: auto;
+  width: 60px;
 }
+
 #query select {
   margin: auto;
+  border-radius: 0;
+  width: 60px;
 }
+
 
 /* MAIN SECTION */
 main {
@@ -41,31 +50,42 @@ main {
 
 /* ASIDES */
 #leftAside {
-  width: 200px;
+  width: 310px;
   height: 450px;
   margin: 10px auto;
-  border: 2px solid black;
+  /* border: 2px solid black; */
+  position: relative;
+  text-align: center;
+  padding: 70px;
+}
+#leftAside div {
+  position: relative;
+  margin: 0 auto;
+}
+#leftAside p {
+  margin: 10px auto;
 }
 
 #rightAside {
-  width: 200px;
+  width: 310px;
   height: 310px;
   margin: auto;
 }
 
-/* CHART DISPLAY SECTION */
+/* CHART DISPLAY */
 #chartDisplay {
   margin: 10px 0;
   text-align: center;
-  border: 2px solid green;
+  /* border: 2px solid green; */
 }
 
 #chartDisplay h2 {
   font-weight: bolder;
+  margin: 0 auto;
 }
 
 #chartDisplay p {
-
+  margin: 0 auto;
 }
 
   /* CHART SECTION */
@@ -77,6 +97,8 @@ main {
   height: 310px;
   width: 310px;
   margin: 0 20px;
+  /* background: rgb(231,161,12);
+background: linear-gradient(103deg, rgba(231,161,12,1) 0%, rgba(180,139,9,1) 0%, rgba(185,147,13,1) 0%, rgba(231,161,9,1) 9%); */
 }
 
 .fretLocation {
@@ -84,6 +106,7 @@ main {
   height: 16px;
   background: black;
   color: white;
+  margin: auto;
 }
 
 .string {
@@ -95,6 +118,8 @@ main {
 
 .loc {
   background: orange;
+
+  /* background: transparent; */
   /* border: 1px solid black; */
   border-bottom: 1px solid black;
   border-top: 1px solid black;
@@ -104,7 +129,6 @@ main {
   color: transparent;
 }
 
-
 .locOpen {
   background: white;
   border: none;
@@ -112,13 +136,14 @@ main {
   text-align: center;
   position: relative;
   z-index: 3;
+  color: transparent;
 }
 
 
-
 /* MARKERS */
+
 .finger {
-  background: white;
+  background: blue;
   border: 5px solid blue;
   border-radius: 20px;
   height: 10px;
@@ -129,19 +154,31 @@ main {
   left: 17px;
 }
 
+
+/* #leftAside .finger {
+  display: inline;
+  position: absolute;
+} */
+
 .openString {
   background:white;
   border: 5px solid black;
   border-radius: 20px;
   height: 10px;
   width: 10px;
-  margin: auto;
   z-index: 4;
+  position: absolute;
+  bottom: 5px;
+  left: 17px;
 }
 
 .mute {
   font-weight: bolder;
   color: red;
+  position: absolute;
+  bottom: 5px;
+  left: 22px;
+  font-size: 20px;
 }
 
 /* STRINGS */
@@ -153,8 +190,9 @@ main {
   right: 40%;
   background: grey;
   box-shadow: 4px 0 2px rgba(27, 27, 27, .5);
+  width: 3px;
 }
-#string2 .stringImg {
+/* #string2 .stringImg {
   width: 9%;
   right: 41%;
 }
@@ -173,7 +211,7 @@ main {
 #string6 .stringImg {
   width: 5%;
   right: 45%;
-} 
+}  */
 */
 /* #makeString {
   border-right: 1px solid black;

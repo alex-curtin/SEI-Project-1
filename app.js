@@ -4,6 +4,7 @@ const types = document.querySelector('#type');
 const chartDisplay = document.querySelector('#chartDisplay');
 const leftAside = document.querySelector('#leftAside');
 const BASE_URL = "https://api.uberchord.com/v1/chords/";
+leftAside.classList.add('invisible');
 let startingFret;
 
 //adding options to dropdown menus
@@ -26,6 +27,8 @@ const typeList = [
   { name: '7', query: '_7' },
   { name: 'maj7', query: '_maj7' },
   { name: 'min7', query: '_m7' },
+  { name: '5', query: '_5' },
+  { name: 'dim7', query: '_dim7' },
   { name: 'add9', query: '_add9' }
 ];
 typeList.forEach((chordType) => {
@@ -189,4 +192,5 @@ search.addEventListener('click', async () => {
   const chord = response.data[0];
   console.log(chord);
   render(chord);
+  leftAside.classList.remove('invisible');
 })

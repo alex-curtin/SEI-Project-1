@@ -14,11 +14,12 @@ MVP:
   - This is currently working as it should.
 
 4. Create chord chart
-  - It currently creates a chart that has starting fret info and fingering info, but doesn't have actual notes assigned to fret positions. I am currently working on a way to fix this.
+  - It currently creates a chart that has starting fret info and fingering info, but doesn't have actual notes assigned to fret positions. To fix if possible, not high priority.
 
 5. Display chord chart
-  - The chart appears but I need to create conditions to alter the appearance based on the starting fret of the chart.
-  - The site needs to be styled.
+  - The chart appears but I need to create conditions to alter the appearance based on the starting fret of the chart. 
+  - Currently need to: fix appearance of muted strings on chords that start after fret; make finger notation markers appear over strings; Add fret markers; add conditions for barre chords.
+  - The site needs to be styled & made responsive. This is the current priority.
   
 6. Publish site on Surge
 
