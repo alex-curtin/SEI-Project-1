@@ -55,7 +55,7 @@ const createFretLocation = (startingFret) => {
 }
 
 
-//creates chord chart - 5 rows (frets), 6 columns (strings)
+//create chord chart - 5 rows (frets), 6 columns (strings)
 //each column has an id of 'string + number'
 //each space is assigned an id of q{num}
 const createChart = (chordStrings) => {
@@ -109,13 +109,13 @@ const formation = (fretPositions, startingFret) => {
     const num = fretPosition.split('').splice(1, 2).join('');
     const int = parseInt(num, 10);
     if ((int + 4) % 5 === 0 && startingFret === 0) {
-      fing.classList.add('openString')
+      fing.classList.add('openString');
     } else {
       fing.classList.add('finger');
     }
     fret.append(fing);
   })
-}
+};
 //add an 'x' on strings that are not played
 const muteString = (pressString) => {
   const mute = document.createElement('div');
@@ -123,6 +123,15 @@ const muteString = (pressString) => {
   mute.classList.add('mute');
   const muteLocation = pressString.firstChild;
   muteLocation.append(mute);
+};
+
+//handle chords that start above fret 0 but have open
+//notes in them.
+const dealWithCrazyChord = (pressString) => {
+  const fret = pressString.firstChild;
+  const fing = document.createElement('div');
+  fing.classList.add('openString');
+  fret.append(fing);
 };
 
 //Takes API's string position info and turns it into an
@@ -135,13 +144,16 @@ const createFretPositions = (stringPositions) => {
       const pressString = document.querySelector(`#string${i + 1}`);
       console.log(pressString);
       console.log(stringPosition);
-      //this will throw an error if the starting fret is > 0 but
-      //the chord contains an open string
-      const posInt = (parseInt(stringPosition, 10) - startingFret);
+      const posInt = parseInt(stringPosition, 10);
       const posFinal = posInt - startingFret;
-      const location = pressString.children[posFinal];
-      console.log(location.id)
-      fretPositions.push(location.id);
+      if (posFinal < 0) {
+        dealWithCrazyChord(pressString);
+      } else {
+        console.log(posFinal);
+        const location = pressString.children[posFinal];
+        console.log(location.id)
+        fretPositions.push(location.id);
+      }
     } else {
       const pressString = document.querySelector(`#string${i + 1}`);
       muteString(pressString);
@@ -162,9 +174,9 @@ const findStartingFret = (chordStrings) => {
   let startingFretTemp = 0;
   if (highestInt > 4) {
     startingFretTemp = highestInt - 4;
-  };
+  }
   return startingFretTemp;
-}
+};
 
 
 //Rendering data to useable chord info
