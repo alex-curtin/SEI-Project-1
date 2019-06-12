@@ -36,11 +36,14 @@ typeList.forEach((chordType) => {
   types.innerHTML += `<option id=${chordType.query}>${chordType.name}</option>`
 });
 
-//A function to assign a note to each location on the fretboard
-//Doesn't do anything currently.
-const assignNotes = (fretboardUnfiltered, stringsArray) => {
-  const fretboardFiltered = [];
-}
+const keyChange = (scale, increment) => {
+  const newScale = scale;
+  for (let i = 0; i < increment; i += 1) {
+    let note = newScale.pop();
+    newScale.unshift(note);
+  }
+  return newScale;
+};
 
 //Creates marker that notes starting fret, for non-open chords.
 const createFretLocation = (startingFret) => {
@@ -78,7 +81,6 @@ const createChart = (chordStrings) => {
       fret.innerHTML = `${i + j + k}`;
       // this if statement assigns the class 'locOpen' to the 
       // first row if chart is starting at fret 0.
-      console.log(startingFret);
       if (startingFret === 0 && j === 0) {
         fret.classList.add('locOpen');
       } else {
@@ -105,8 +107,6 @@ const createChart = (chordStrings) => {
 //takes an array that represents locations on the fretboard
 //and adds a marker ('<div id='finger'>) on each
 const formation = (fretPositions, startingFret) => {
-  // const fretPositions = ['q4', 'q8', 'q29'];
-
   fretPositions.forEach((fretPosition) => {
     const fret = document.querySelector(`#${fretPosition}`);
     const fing = document.createElement('div');
@@ -120,29 +120,31 @@ const formation = (fretPositions, startingFret) => {
     fret.append(fing);
   })
 }
-// formation();
 
 const muteString = (pressString) => {
   const mute = document.createElement('div');
   mute.innerHTML = 'X';
   mute.classList.add('mute');
   const muteLocation = pressString.firstChild;
-  console.log(muteLocation);
   muteLocation.append(mute);
 }
 
 //Takes API's string position info and turns it into an
-//array that can be interpreted by formation function
-//fingerPostion is not currently being utilized but may be incorporated
-//later
-const createFretPositions = (fingerPositions, stringPositions) => {
+//array that can be interpreted by formation() function
+const createFretPositions = (stringPositions) => {
   const startingFret = findStartingFret(stringPositions);
   const fretPositions = [];
   stringPositions.forEach((stringPosition, i) => {
     if (stringPosition !== 'X') {
       const pressString = document.querySelector(`#string${i + 1}`);
+      console.log(pressString);
+      console.log(stringPosition);
+      //this will throw an error if the starting fret is > 0 but
+      //the chord contains an open string
       const posInt = (parseInt(stringPosition, 10) - startingFret);
+
       const location = pressString.children[posInt];
+      console.log(location.id)
       fretPositions.push(location.id);
     } else {
       const pressString = document.querySelector(`#string${i + 1}`);
@@ -151,7 +153,6 @@ const createFretPositions = (fingerPositions, stringPositions) => {
   })
   formation(fretPositions, startingFret)
 }
-// createFretPositions(["X", "2", "3", "1", "X", "X"], ["0", "2", "2", "1", "0", "0"])
 
 //Determines what fret position the chord chart should start at.
 //Pull any X's out of chordStrings array, convert strings to ints,
@@ -182,16 +183,17 @@ const render = (chord) => {
   <p>(${chordTones.replace(/b/g, '&#9837')})</p>`
   chartDisplay.append(el);
   createChart(chordStrings);
-  createFretPositions(chordFingering, chordStrings);
+  createFretPositions(chordStrings);
+  console.log(chordFingering);
+  console.log(chordStrings);
 }
 
 //Click event that gets data for selected chord
 search.addEventListener('click', async () => {
   const noteSearch = notes[notes.selectedIndex].id;
   const typeSearch = types[types.selectedIndex].id;
-  const response = await axios.get(`${BASE_URL}${noteSearch}${typeSearch}`)
+  const response = await axios.get(`${BASE_URL}${noteSearch}${typeSearch}`);
   const chord = response.data[0];
-  console.log(chord);
   render(chord);
   chartDisplay.classList.remove('invisible');
   leftAside.classList.remove('invisible');

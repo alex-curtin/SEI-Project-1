@@ -17,10 +17,18 @@ MVP:
   - It currently creates a chart that has starting fret info and fingering info, but doesn't have actual notes assigned to fret positions. To fix if possible, not high priority.
 
 5. Display chord chart
-  - The chart appears but I need to create conditions to alter the appearance based on the starting fret of the chart. 
-  - Currently need to: fix appearance of muted strings on chords that start after fret; make finger notation markers appear over strings; Add fret markers; add conditions for barre chords.
-  - Responsive design added - put up on Surge to test further.
-  - Currently styling.
+  - The chart appears but I need to make a few adjustments:
+    - finish adding chord types to dropdown.
+    - fix names of flat/sharp notes on dropdown.
+    - fix appearance of muted strings on chords that start after fret; 
+    - Add fret markers; 
+    - add conditions for barre chords (probably too complex to solve this week).
+  - Currently styling
+  - Responsive design added - tested on Surge.
+    Issues to fix:
+    - header changes color at different sizes.
+    - Fix bug that occurs when the starting fret is > 0 and the chord contains an open string.
+
 
 6. Come up with a name.
 
