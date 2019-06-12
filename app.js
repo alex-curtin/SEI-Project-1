@@ -36,7 +36,7 @@ typeList.forEach((chordType) => {
   types.innerHTML += `<option id=${chordType.query}>${chordType.name}</option>`
 });
 
-//function to change the keys
+//function to change
 const keyChange = (scale, increment) => {
   const newScale = scale;
   for (let i = 0; i < increment; i += 1) {
@@ -100,7 +100,6 @@ const createChart = (chordStrings) => {
     createFretLocation(startingFret);
   }
   chartDisplay.append(chart);
-  assignNotes(fretboardUnfiltered, stringsArray);
 }
 
 
@@ -121,14 +120,14 @@ const formation = (fretPositions, startingFret) => {
     fret.append(fing);
   })
 }
-
+//add an 'x' on strings that are not played
 const muteString = (pressString) => {
   const mute = document.createElement('div');
   mute.innerHTML = 'X';
   mute.classList.add('mute');
   const muteLocation = pressString.firstChild;
   muteLocation.append(mute);
-}
+};
 
 //Takes API's string position info and turns it into an
 //array that can be interpreted by formation() function
@@ -143,17 +142,18 @@ const createFretPositions = (stringPositions) => {
       //this will throw an error if the starting fret is > 0 but
       //the chord contains an open string
       const posInt = (parseInt(stringPosition, 10) - startingFret);
-
-      const location = pressString.children[posInt];
+      const posFinal = posInt - startingFret;
+      const location = pressString.children[posFinal];
       console.log(location.id)
       fretPositions.push(location.id);
     } else {
       const pressString = document.querySelector(`#string${i + 1}`);
       muteString(pressString);
     }
-  })
+  });
+  console.log(fretPositions);
   formation(fretPositions, startingFret)
-}
+};
 
 //Determines what fret position the chord chart should start at.
 //Pull any X's out of chordStrings array, convert strings to ints,

@@ -26,6 +26,7 @@ MVP:
     - Fix bug that occurs when the starting fret is > 0 and the chord contains an open string.
 
 6. Responsive design added and tested on Surge.
+  - adjust responsive design for < 400px wide screens.
 
 7. Come up with a name.
 

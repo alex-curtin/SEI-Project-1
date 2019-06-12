@@ -5,6 +5,7 @@ body {
   font-family: 'Lato', sans-serif;
   background: linear-gradient(rgba(114,224,232,.9), rgba(114,224,232,.9)), url("images/notes-pattern.jpg");
   background-size: 200px;
+  background: white;
 }
 
 .invisible {
