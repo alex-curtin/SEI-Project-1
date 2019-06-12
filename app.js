@@ -66,10 +66,6 @@ const createChart = (chordStrings) => {
   chart.classList.add('chart');
   const stringsArray = [];
   let k = 0;
-  //creating 6 strings each with 5 frets inside
-  //each string is a div with 5 divs inside representing
-  //fret locations. The k variable is used to assign each
-  //location a unique numerical id
   for (let i = 1; i <= 6; i += 1) {
     const string = document.createElement('div');
     const stringImg = document.createElement('div');

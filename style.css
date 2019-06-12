@@ -5,7 +5,6 @@ body {
   font-family: 'Lato', sans-serif;
   background: linear-gradient(rgba(114,224,232,.9), rgba(114,224,232,.9)), url("images/notes-pattern.jpg");
   background-size: 200px;
-  background: white;
 }
 
 .invisible {
@@ -127,7 +126,6 @@ main {
 /* CHART DISPLAY */
 #chartDisplay {
   margin: 10px 0;
-  height: 1000px;
   text-align: center;
   background: white;
   border-radius: 30px;
@@ -266,7 +264,7 @@ footer {
       flex-direction: column;
     }
     header {
-      width: 100vw;
+      width: 100%;
     }
     h1 {
       font-size: 40px;
@@ -312,7 +310,7 @@ footer {
     and (max-width: 575px) {
       header {
         width: 100%;
-        height: 150px;
+        height: 180px;
         display: flex;
         align-items: flex-end;
         flex-direction: column;
@@ -330,10 +328,24 @@ footer {
         align-self: flex-start;
         flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-around;
         margin: 0;
-        padding-bottom: 10px;
+        padding: 0;
+        height: 60px;
       }
+      .legend p {
+        font-size: 14px;
+        margin: 0;
+      }
+
+      /* .leftAsideFinger {
+        border: none;
+        border-radius: 10px;
+        height: 15px;
+        width: 15px;
+        align-self: center;
+        justify-self: flex-end;
+      } */
 
       #chartDisplay {
         margin-top: 50px;
