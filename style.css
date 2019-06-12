@@ -3,9 +3,8 @@
 body {
   margin: 0;
   font-family: 'Lato', sans-serif;
-  background: linear-gradient(rgba(114,224,232,.8), rgba(114,224,232,.7)), url("images/notes-pattern.jpg");
-  background: white;
-  background-size: 175px;
+  background: linear-gradient(rgba(114,224,232,.9), rgba(114,224,232,.9)), url("images/notes-pattern.jpg");
+  background-size: 200px;
 }
 
 .invisible {
@@ -14,7 +13,7 @@ body {
 
 /* HEADER SECTION */
 header {
-  background: pink;
+  background: rgba(255, 192, 221, 1);
   color: white;
   width: 100%;
   height: 150px;
@@ -86,8 +85,8 @@ main {
   justify-content: space-around;
 }
 .leftAsideFinger {
-  background: blue;
-  border: 5px solid blue;
+  background: rgb(10, 100, 200);
+  border: 5px solid rgb(10, 100, 200);
   border-radius: 20px;
   height: 10px;
   width: 10px;
@@ -110,7 +109,7 @@ main {
   border: 5px solid white;
   height: 10px;
   width: 10px;
-  color: red;
+  color: rgb(241, 47, 47);
   font-size: 20px;
   text-align: center;
   line-height: .5;
@@ -137,7 +136,7 @@ main {
 
 #chartDisplay h2 {
   font-weight: bolder;
-  margin: 10px auto;
+  margin: 0 auto;
   font-size: 30px;
 }
 
@@ -148,7 +147,7 @@ main {
 
   /* CHART SECTION */
 .chart {
-  background: orange;
+  background: rgb(230, 153, 11);
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -175,7 +174,6 @@ main {
 }
 
 .loc {
-  background: orange;
   background: transparent;
   /* border: 1px solid black; */
   border-bottom: 1px solid black;
@@ -201,16 +199,14 @@ main {
 
 /* MARKERS */
 .finger {
-  background: blue;
-  border: 5px solid blue;
+  background: rgb(0, 100, 200);
+  border: 5px solid rgb(0, 100, 200);
   border-radius: 20px;
   height: 10px;
   width: 10px;
   z-index: 5;
   position: absolute;
   bottom: 0;
-  /* left: 17px; */
-  /* justify-self: center; */
   align-self: center;
 }
 
@@ -233,7 +229,7 @@ main {
   border-radius: 20px;
   height: 10px;
   width: 10px;
-  color: red;
+  color: rgb(241, 47, 47);
   position: absolute;
   bottom: 5px;
   left: 22px;
@@ -294,13 +290,12 @@ footer {
       width: 33.3%;
     }
     #chartDisplay {
-      margin: 0;
+      margin-top: 40px;
       text-align: center;
       background: white;
       border-radius: 30px;
       align-self: center;
-      padding: 30px 20px 0px;
-      /* border: 2px solid green; */
+      padding: 0px 20px 50px;
     }
     .chart {
       height: 310px;
@@ -339,5 +334,9 @@ footer {
         justify-content: space-evenly;
         margin: 0;
         padding-bottom: 10px;
+      }
+
+      #chartDisplay {
+        margin-top: 50px;
       }
     }
