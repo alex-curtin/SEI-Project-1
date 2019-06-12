@@ -36,6 +36,7 @@ typeList.forEach((chordType) => {
   types.innerHTML += `<option id=${chordType.query}>${chordType.name}</option>`
 });
 
+//function to change the keys
 const keyChange = (scale, increment) => {
   const newScale = scale;
   for (let i = 0; i < increment; i += 1) {

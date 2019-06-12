@@ -23,15 +23,12 @@ MVP:
     - fix appearance of muted strings on chords that start after fret; 
     - Add fret markers; 
     - add conditions for barre chords (probably too complex to solve this week).
-  - Currently styling
-  - Responsive design added - tested on Surge.
-    Issues to fix:
-    - header changes color at different sizes.
     - Fix bug that occurs when the starting fret is > 0 and the chord contains an open string.
 
+6. Responsive design added and tested on Surge.
 
-6. Come up with a name.
+7. Come up with a name.
 
-7. Publish site on Surge
+8. Publish site on Surge
 
 Strech: Stretch goals would include: displaying multiple variations for each chord, enabling users to save a list of chords they want to use, suggesting chords to go with the user's saved chords (this may require an additional API).
