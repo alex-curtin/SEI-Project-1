@@ -5,6 +5,7 @@ const chartDisplay = document.querySelector('#chartDisplay');
 const leftAside = document.querySelector('#leftAside');
 const BASE_URL = "https://api.uberchord.com/v1/chords/";
 leftAside.classList.add('invisible');
+chartDisplay.classList.add('invisible');
 let startingFret;
 
 //adding options to dropdown menus
@@ -192,5 +193,6 @@ search.addEventListener('click', async () => {
   const chord = response.data[0];
   console.log(chord);
   render(chord);
+  chartDisplay.classList.remove('invisible');
   leftAside.classList.remove('invisible');
 })
