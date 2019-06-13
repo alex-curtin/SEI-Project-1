@@ -179,7 +179,7 @@ main {
   text-align: center;
   position: relative;
   z-index: 5;
-  color: black;
+  color: transparent;
   display: flex;
   flex-direction: column;
 }
@@ -275,7 +275,7 @@ footer p {
 
 
 @media only screen
-  and (max-width: 1000px) {
+  and (max-width: 800px) {
     main {
       flex-direction: column;
     }
@@ -302,6 +302,7 @@ footer p {
       border: 2px solid transparent;
       border-radius: 0;
       width: 33.3%;
+      padding: 0 30px;
     }
     #chartDisplay {
       margin-top: 40px;
@@ -354,7 +355,71 @@ footer p {
         margin: 0;
       }
 
+      /* CHART DISPLAY */
       #chartDisplay {
         margin-top: 50px;
+        width: 75%;
       }
+      .chart {
+        height: 80%;
+        width: 100%;
+        margin: 0 auto;
+      }
+    
+      .fretLocation {
+        width: 310px;
+        height: 16px;
+        margin: auto;
     }
+      .string {
+        position: relative;
+        z-index: 1;
+      }
+      .loc {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .locOpen {
+        border-bottom: 5px dashed grey;
+        position: relative;
+        color: transparent;
+      }
+          /* MARKERS */
+      .finger {
+        border-radius: 20px;
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        align-self: center;
+      }
+
+      .openString {
+        border-radius: 20px;
+        height: 10px;
+        width: 10px;
+        bottom: 5px;
+        left: 17px;
+      }
+
+      .mute {
+        border-radius: 20px;
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        bottom: 5px;
+        left: 22px;
+        font-size: 20px;
+        line-height: .5;
+      }
+
+      .fretMarker {
+        height: 20px;
+        width: 20px;
+        border-radius: 20px;
+        position: absolute;
+        bottom: 35%;
+      }
+  }
