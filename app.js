@@ -60,13 +60,7 @@ const addNotes = (fretboardUnfiltered, startingFret) => {
   })
 };
 
-//add fret markers to the fretboard
-const addFretMarkers = () => {
-  const fret = document.querySelector('#q19');
-  const fretMarker = document.createElement('div');
-  fretMarker.classList.add('fretMarker');
-  fret.append(fretMarker);
-};
+
 
 //Creates marker that notes starting fret, for non-open chords.
 const createFretLocation = (startingFret) => {
@@ -115,7 +109,6 @@ const createChart = (chordStrings) => {
   console.log(fretboardUnfiltered);
   addNotes(fretboardUnfiltered, startingFret);
   chartDisplay.append(chart);
-  addFretMarkers(startingFret);
 };
 
 //adding fingering notation to chord chart
@@ -181,14 +174,14 @@ const createFretPositions = (stringPositions) => {
 //Determines what fret position the chord chart should start at.
 //Pull any X's out of chordStrings array, convert strings to ints,
 //return highest int, if highest int is > 4, starting fret is
-//highest int - 3
+//highest int - 4
 const findStartingFret = (chordStrings) => {
   const onlyNums = chordStrings.filter(chordString => chordString !== 'X');
   const onlyInts = onlyNums.map(num => parseInt(num, 10));
   const highestInt = Math.max(...onlyInts);
   let startingFretTemp = 0;
   if (highestInt > 4) {
-    startingFretTemp = highestInt - 3;
+    startingFretTemp = highestInt - 4;
   }
   return startingFretTemp;
 };
