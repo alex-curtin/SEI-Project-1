@@ -30,6 +30,6 @@ MVP:
 
 7. Come up with a name.
 
-8. Deploy on Surge: http://alex-curtin-p-1.surge.sh/
+8. Deploy on Surge: [http://alex-curtin-p-1.surge.sh/] (http://alex-curtin-p-1.surge.sh/)
 
 Strech: Stretch goals would include: displaying multiple variations for each chord, enabling users to save a list of chords they want to use, suggesting chords to go with the user's saved chords (this may require an additional API).
