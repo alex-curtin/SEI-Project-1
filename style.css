@@ -130,7 +130,7 @@ main {
   background: white;
   border-radius: 30px;
   height: 420px;
-  /* border: 2px solid green; */
+  margin-bottom: 50px;
 }
 
 #chartDisplay h2 {
@@ -179,7 +179,7 @@ main {
   text-align: center;
   position: relative;
   z-index: 5;
-  color: transparent;
+  color: black;
   display: flex;
   flex-direction: column;
 }
@@ -235,6 +235,15 @@ main {
   line-height: .5;
 }
 
+.fretMarker {
+  background: black;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  position: absolute;
+  z-index: 3;
+  bottom: 35%;
+}
 
 /* STRINGS */
 .string .stringImg {
@@ -242,7 +251,7 @@ main {
   height: 100%;
   width: 10%;
   position: absolute;
-  right: 40%;
+  right: 46%;
   background: grey;
   box-shadow: 4px 0 2px rgba(27, 27, 27, .5);
   width: 3px;
@@ -253,8 +262,15 @@ footer {
   background: rgba(181,239,242,1);
   height: 30px;
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  margin-top: 20px;
+  z-index: 10;
+  color: white;
+}
+footer p {
+  position: relative;
+  margin: 5px 20px;
 }
 
 
@@ -337,15 +353,6 @@ footer {
         font-size: 14px;
         margin: 0;
       }
-
-      /* .leftAsideFinger {
-        border: none;
-        border-radius: 10px;
-        height: 15px;
-        width: 15px;
-        align-self: center;
-        justify-self: flex-end;
-      } */
 
       #chartDisplay {
         margin-top: 50px;
