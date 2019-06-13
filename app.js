@@ -22,12 +22,16 @@ scale.forEach((note) => {
 const typeList = [
   { name: 'maj', query: '' },
   { name: 'min', query: '_m' },
+  { name: '5', query: '_5' },
   { name: '7', query: '_7' },
   { name: 'maj7', query: '_maj7' },
   { name: 'min7', query: '_m7' },
-  { name: '5', query: '_5' },
+  { name: '6', query: '_6' },
+  { name: 'sus2', query: '_sus2' },
+  { name: 'sus4', query: '_sus4' },
+  { name: 'add9', query: '_add9' },
+  { name: 'dim', query: '_dim' },
   { name: 'dim7', query: '_dim7' },
-  { name: 'add9', query: '_add9' }
 ];
 typeList.forEach((chordType) => {
   types.innerHTML += `<option id=${chordType.query}>${chordType.name}</option>`
@@ -60,10 +64,23 @@ const addNotes = (fretboardUnfiltered, startingFret) => {
   })
 };
 
-
+// add fret markers to the fretboard
+const addFretMarkers = () => {
+  const gString = document.querySelector('#string4');
+  const gFrets = gString.querySelectorAll('div');
+  console.log(gFrets);
+  const fretMarker = document.createElement('div');
+  fretMarker.classList.add('fretMarker');
+  gFrets.forEach((fret) => {
+    if (fret.classList.contains('Bb') || fret.classList.contains('C') ||
+      fret.classList.contains('D') || fret.classList.contains('E')) {
+      fret.append(fretMarker);
+    }
+  });
+};
 
 //Creates marker that notes starting fret, for non-open chords.
-const createFretLocation = (startingFret) => {
+const createStartingFret = (startingFret) => {
   const fretLocation = document.createElement('div');
   fretLocation.classList.add('fretLocation');
   fretLocation.innerHTML = `FRET ${startingFret}`;
@@ -104,7 +121,7 @@ const createChart = (chordStrings) => {
     stringsArray.push(string);
   }
   if (startingFret > 0) {
-    createFretLocation(startingFret);
+    createStartingFret(startingFret);
   }
   console.log(fretboardUnfiltered);
   addNotes(fretboardUnfiltered, startingFret);
@@ -181,7 +198,7 @@ const findStartingFret = (chordStrings) => {
   const highestInt = Math.max(...onlyInts);
   let startingFretTemp = 0;
   if (highestInt > 4) {
-    startingFretTemp = highestInt - 4;
+    startingFretTemp = highestInt - 3;
   }
   return startingFretTemp;
 };
