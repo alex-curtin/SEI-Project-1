@@ -65,18 +65,16 @@ const addNotes = (fretboardUnfiltered, startingFret) => {
 };
 
 // add fret markers to the fretboard
-const addFretMarkers = () => {
+const addFretMarkers = (startingFret) => {
   const gString = document.querySelector('#string4');
   const gFrets = gString.querySelectorAll('div');
   console.log(gFrets);
   const fretMarker = document.createElement('div');
   fretMarker.classList.add('fretMarker');
-  gFrets.forEach((fret) => {
-    if (fret.classList.contains('Bb') || fret.classList.contains('C') ||
-      fret.classList.contains('D') || fret.classList.contains('E')) {
-      fret.append(fretMarker);
-    }
-  });
+  if (startingFret === 0) {
+    const getLoc = document.querySelector('#q19');
+    getLoc.append(fretMarker);
+  }
 };
 
 //Creates marker that notes starting fret, for non-open chords.
@@ -126,6 +124,7 @@ const createChart = (chordStrings) => {
   console.log(fretboardUnfiltered);
   addNotes(fretboardUnfiltered, startingFret);
   chartDisplay.append(chart);
+  addFretMarkers(startingFret);
 };
 
 //adding fingering notation to chord chart
