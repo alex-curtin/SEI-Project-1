@@ -13,20 +13,20 @@ MVP:
 3. Coerce chord data into data that can be used to create a chord chart
   - This is currently working as it should.
 
-4. Create chord chart
-  - It currently creates a chart that has starting fret info and fingering info, but doesn't have actual notes assigned to fret positions. To fix if possible, not high priority.
+4. Create chord chart.
+  - This is currently working as it should.
 
 5. Display chord chart
   - The chart appears but I need to make a few adjustments:
+    - fix appearance of top row of open chords.
     - finish adding chord types to dropdown.
     - fix names of flat/sharp notes on dropdown.
-    - fix appearance of muted strings on chords that start after fret; 
+    - fix appearance of muted strings on chords that start after fret 0; 
     - Add fret markers; 
     - add conditions for barre chords (probably too complex to solve this week).
-    - Fix bug that occurs when the starting fret is > 0 and the chord contains an open string.
 
-6. Responsive design added and tested on Surge.
-  - adjust responsive design for < 400px wide screens.
+6. Responsive design completed.
+  - Test on Surge again.
 
 7. Come up with a name.
 

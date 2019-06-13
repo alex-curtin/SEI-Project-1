@@ -8,7 +8,7 @@ leftAside.classList.add('invisible');
 chartDisplay.classList.add('invisible');
 let startingFret;
 
-//adding options to dropdown menus
+//add options to dropdown menus
 //.replace('b', '&#9837') changes 'b' to the flat symbol
 const scale = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 scale.forEach((note) => {
@@ -16,13 +16,9 @@ scale.forEach((note) => {
 });
 
 
-//adding options to type dropdown
+//add options to type dropdown
 //name: is how type is displayed on the dropdown
 //query: is how type is appended to the API search URL
-//TODO: use API to get list of all possible types and
-//      create a function that will make this list 
-//      automatically. Might be tricky because API's
-//      search's are not standardized.
 const typeList = [
   { name: 'maj', query: '' },
   { name: 'min', query: '_m' },
@@ -37,12 +33,7 @@ typeList.forEach((chordType) => {
   types.innerHTML += `<option id=${chordType.query}>${chordType.name}</option>`
 });
 
-//function to change key
-//E inc 8
-//A inc 3
-//D inc 10
-//G inc 5
-//B inc 1
+//change key, helps addNotes
 const keyChange = (increment) => {
   const newScale = scale.slice();
   for (let i = 0; i < increment; i += 1) {
@@ -52,6 +43,7 @@ const keyChange = (increment) => {
   return newScale;
 };
 
+//assign note classes to locations on fretboard
 const addNotes = (fretboardUnfiltered, startingFret) => {
   const increment = 8 - startingFret;
   const newKey = keyChange(increment);
@@ -74,8 +66,7 @@ const addFretMarkers = () => {
   const fretMarker = document.createElement('div');
   fretMarker.classList.add('fretMarker');
   fret.append(fretMarker);
-}
-
+};
 
 //Creates marker that notes starting fret, for non-open chords.
 const createFretLocation = (startingFret) => {
@@ -83,7 +74,7 @@ const createFretLocation = (startingFret) => {
   fretLocation.classList.add('fretLocation');
   fretLocation.innerHTML = `FRET ${startingFret}`;
   chartDisplay.append(fretLocation);
-}
+};
 
 //create chord chart - 5 rows (frets), 6 columns (strings)
 //each column has an id of 'string + number'
@@ -99,14 +90,11 @@ const createChart = (chordStrings) => {
     const string = document.createElement('div');
     const stringImg = document.createElement('div');
     stringImg.classList.add('stringImg');
-    // string.innerHTML = `${i}`;
     string.classList.add('string');
     string.id = `string${i}`;
     for (let j = 0; j < 5; j += 1) {
       const fret = document.createElement('div');
       fret.innerHTML = `${i + j + k}`;
-      // this if statement assigns the class 'locOpen' to the 
-      // first row if chart is starting at fret 0.
       if (startingFret === 0 && j === 0) {
         fret.classList.add('locOpen');
       } else {
@@ -114,7 +102,6 @@ const createChart = (chordStrings) => {
       }
       fret.id = `q${i + j + k}`;
       string.append(fret);
-
       fretboardUnfiltered.push(fret);
     }
     k += 4;
@@ -129,12 +116,11 @@ const createChart = (chordStrings) => {
   addNotes(fretboardUnfiltered, startingFret);
   chartDisplay.append(chart);
   addFretMarkers(startingFret);
-}
-
+};
 
 //adding fingering notation to chord chart
 //takes an array that represents locations on the fretboard
-//and adds a marker ('<div id='finger'>) on each
+//and adds a marker ('finger' or 'openString') on each
 const formation = (fretPositions, startingFret) => {
   fretPositions.forEach((fretPosition) => {
     const fret = document.querySelector(`#${fretPosition}`);
@@ -147,12 +133,13 @@ const formation = (fretPositions, startingFret) => {
       fing.classList.add('finger');
     }
     fret.append(fing);
-  })
+  });
 };
-//add an 'x' on strings that are not played
+
+//add a marker ('x') on strings that are muted
 const muteString = (pressString) => {
   const mute = document.createElement('div');
-  mute.innerHTML = 'X';
+  mute.innerHTML = '<span>X</span>';
   mute.classList.add('mute');
   const muteLocation = pressString.firstChild;
   muteLocation.append(mute);
@@ -194,14 +181,14 @@ const createFretPositions = (stringPositions) => {
 //Determines what fret position the chord chart should start at.
 //Pull any X's out of chordStrings array, convert strings to ints,
 //return highest int, if highest int is > 4, starting fret is
-//highest int - 4
+//highest int - 3
 const findStartingFret = (chordStrings) => {
   const onlyNums = chordStrings.filter(chordString => chordString !== 'X');
   const onlyInts = onlyNums.map(num => parseInt(num, 10));
   const highestInt = Math.max(...onlyInts);
   let startingFretTemp = 0;
   if (highestInt > 4) {
-    startingFretTemp = highestInt - 4;
+    startingFretTemp = highestInt - 3;
   }
   return startingFretTemp;
 };
@@ -217,11 +204,11 @@ const render = (chord) => {
   const el = document.createElement('div');
   el.innerHTML = `
   <h2>${chordName}</h2>
-  <p>(${chordTones.replace(/b/g, '&#9837')})</p>`
+  <p>(${chordTones.replace(/b/g, '&#9837')})</p>`;
   chartDisplay.append(el);
   createChart(chordStrings);
   createFretPositions(chordStrings);
-}
+};
 
 //Click event that gets data for selected chord
 search.addEventListener('click', async () => {
@@ -232,4 +219,4 @@ search.addEventListener('click', async () => {
   render(chord);
   chartDisplay.classList.remove('invisible');
   leftAside.classList.remove('invisible');
-})
+});
