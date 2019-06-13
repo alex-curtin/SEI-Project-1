@@ -163,7 +163,7 @@ const findStartingFret = (chordStrings) => {
 //Convert data to useable chord info
 const convertData = (chord) => {
   chartDisplay.innerHTML = '';
-  const chordName = chord.chordName.split(',').join('').replace('b', '&#9837');
+  const chordName = chord.chordName.split(',').join('').replace('b', '&#9837 ');
   const chordTones = chord.tones.split(',').join(' - ');
   const chordStrings = chord.strings.split(' ');
   const el = document.createElement('div');
