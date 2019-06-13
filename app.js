@@ -37,46 +37,6 @@ typeList.forEach((chordType) => {
   types.innerHTML += `<option id=${chordType.query}>${chordType.name}</option>`
 });
 
-//change key, helps addNotes
-const keyChange = (increment) => {
-  const newScale = scale.slice();
-  for (let i = 0; i < increment; i += 1) {
-    const note = newScale.pop();
-    newScale.unshift(note);
-  }
-  return newScale;
-};
-
-//assign note classes to locations on fretboard
-const addNotes = (fretboardUnfiltered, startingFret) => {
-  const increment = 8 - startingFret;
-  const newKey = keyChange(increment);
-  console.log(newKey);
-  newKey.forEach((note, j) => {
-    newKey.push(newKey[j])
-  });
-  fretboardUnfiltered.forEach((fret, i) => {
-    if (i < 20) {
-      fret.classList.add(newKey[i]);
-    } else {
-      fret.classList.add(newKey[i - 13])
-    }
-  })
-};
-
-// add fret markers to the fretboard
-const addFretMarkers = (startingFret) => {
-  const gString = document.querySelector('#string4');
-  const gFrets = gString.querySelectorAll('div');
-  console.log(gFrets);
-  const fretMarker = document.createElement('div');
-  fretMarker.classList.add('fretMarker');
-  if (startingFret === 0) {
-    const getLoc = document.querySelector('#q19');
-    getLoc.append(fretMarker);
-  }
-};
-
 //Creates marker that notes starting fret, for non-open chords.
 const createStartingFret = (startingFret) => {
   const fretLocation = document.createElement('div');
@@ -90,7 +50,7 @@ const createStartingFret = (startingFret) => {
 //each space is assigned an id of q{num}
 const createChart = (chordStrings) => {
   const startingFret = findStartingFret(chordStrings);
-  const fretboardUnfiltered = [];
+  const fretboardFull = [];
   const chart = document.createElement('div');
   chart.classList.add('chart');
   const stringsArray = [];
@@ -111,7 +71,7 @@ const createChart = (chordStrings) => {
       }
       fret.id = `q${i + j + k}`;
       string.append(fret);
-      fretboardUnfiltered.push(fret);
+      fretboardFull.push(fret);
     }
     k += 4;
     string.append(stringImg);
@@ -121,10 +81,7 @@ const createChart = (chordStrings) => {
   if (startingFret > 0) {
     createStartingFret(startingFret);
   }
-  console.log(fretboardUnfiltered);
-  addNotes(fretboardUnfiltered, startingFret);
   chartDisplay.append(chart);
-  addFretMarkers(startingFret);
 };
 
 //adding fingering notation to chord chart
@@ -203,12 +160,11 @@ const findStartingFret = (chordStrings) => {
 };
 
 
-//Rendering data to useable chord info
-const render = (chord) => {
+//Convert data to useable chord info
+const convertData = (chord) => {
   chartDisplay.innerHTML = '';
   const chordName = chord.chordName.split(',').join('').replace('b', '&#9837');
   const chordTones = chord.tones.split(',').join(' - ');
-  const chordFingering = chord.fingering.split(' ');
   const chordStrings = chord.strings.split(' ');
   const el = document.createElement('div');
   el.innerHTML = `
@@ -225,7 +181,8 @@ search.addEventListener('click', async () => {
   const typeSearch = types[types.selectedIndex].id;
   const response = await axios.get(`${BASE_URL}${noteSearch}${typeSearch}`);
   const chord = response.data[0];
-  render(chord);
+  console.log(chord);
+  convertData(chord);
   chartDisplay.classList.remove('invisible');
   leftAside.classList.remove('invisible');
 });
