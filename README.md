@@ -1,13 +1,13 @@
 # SEI-Project-1
 
-Technologies used: HTML, CSS, JavaScript
+## Description
+A guitar chord finder. Users select the root note and type of chord and it displays an image of the fretboard with finger positions.
 
-API: Uberchord
+Built with HTML, CSS, JavaScript and the UberChord API.
 
-Approach: the project has one function - to display finger positions for a guitar chord    selected by the user - so it employs a simple layout and straightforward interface.
 
-link: [http://alex-curtin-p-1.surge.sh/] (http://alex-curtin-p-1.surge.sh/)
+[live site](http://alex-curtin-p-1.surge.sh/)
 
-Unsolved problems: Fret markers should appear on appropriate frets.
+
 
 

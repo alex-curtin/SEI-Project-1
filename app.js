@@ -147,7 +147,7 @@ const createFretPositions = (stringPositions) => {
 //Determines what fret position the chord chart should start at.
 //Pull any X's out of chordStrings array, convert strings to ints,
 //return highest int, if highest int is > 4, starting fret is
-//highest int - 4
+//highest int - 3
 const findStartingFret = (chordStrings) => {
   const onlyNums = chordStrings.filter(chordString => chordString !== 'X');
   const onlyInts = onlyNums.map(num => parseInt(num, 10));
@@ -158,7 +158,6 @@ const findStartingFret = (chordStrings) => {
   }
   return startingFretTemp;
 };
-
 
 //Convert data to useable chord info
 const convertData = (chord) => {
