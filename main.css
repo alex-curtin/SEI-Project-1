@@ -1,0 +1,425 @@
+
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  background: linear-gradient(rgba(114,224,232,.9), rgba(114,224,232,.9)), url("images/notes-pattern.jpg");
+  background-size: 200px;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+/* HEADER SECTION */
+header {
+  background: #D8763B;
+  background: linear-gradient(0deg, rgba(216,118,59,1) 0%, rgba(216,122,63,1) 100%);
+  color: #fffff4;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-bottom: 15px;
+}
+
+h1 {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 70px;
+  font-weight: bold;
+  margin: 10px auto 0;
+  justify-self: flex-start;
+  letter-spacing: 1px;
+}
+header h2 {
+  margin: 0 auto;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+#query {
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+
+#search {
+  margin: auto;
+  width: 60px;
+}
+
+#query select {
+  margin: auto;
+  border-radius: 0;
+  width: 60px;
+}
+
+
+/* MAIN SECTION */
+main {
+  display: flex;
+  height: 500px;
+  width: 100%;
+}
+
+/* ASIDES */
+#leftAside {
+  width: 20%;
+  height: 210px;
+  margin: 10px auto;
+  /* border: 2px solid black; */
+  position: relative;
+  text-align: center;
+  padding: 90px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.legend {
+  background: #fffff4;
+  position: relative;
+  border: 2px solid transparent;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  width: 80%;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 10%;
+  box-sizing: border-box;
+}
+.leftAsideFinger {
+  background: rgb(10, 100, 200);
+  border: 5px solid rgb(10, 100, 200);
+  border-radius: 20px;
+  height: 10px;
+  width: 10px;
+  align-self: center;
+  justify-self: flex-end;
+}
+.leftAsideOpenString {
+  background:#fffff4;
+  border: 5px solid black;
+  border-radius: 20px;
+  height: 10px;
+  width: 10px;
+  z-index: 4;
+  align-self: center;
+  justify-self: flex-end;
+}
+.leftAsideMute {
+  font-weight: bolder;
+  background: #fffff4;
+  border: 5px solid #fffff4;
+  height: 10px;
+  width: 10px;
+  color: rgb(241, 47, 47);
+  font-size: 20px;
+  text-align: center;
+  line-height: .5;
+  align-self: center;
+  justify-self: flex-end;
+}
+
+#rightAside {
+  width: 20%;
+  height: 310px;
+  margin: auto;
+}
+
+/* CHART DISPLAY */
+#chartDisplay {
+  margin: 10px 0;
+  text-align: center;
+  background: #fffff4;
+  border-radius: 30px;
+  /* height: 80%; */
+  width: 380px;
+  margin-bottom: 50px;
+}
+
+#chartDisplay h2 {
+  font-weight: bolder;
+  margin: 5px auto;
+  font-size: 30px;
+}
+
+#chartDisplay p {
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+  /* CHART SECTION */
+.chart {
+  background: rgb(230, 153, 11);
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-flow: column;
+  height: 310px;
+  width: 309px;
+  margin: 0 auto;
+}
+
+.fretLocation {
+  width: 310px;
+  height: 16px;
+  background: black;
+  color: #fffff4;
+  margin: auto;
+}
+
+.string {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  position: relative;
+  z-index: 2;
+
+}
+
+.loc {
+  background: transparent;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.locOpen {
+  background: #fffff4;
+  border: none;
+  border-bottom: 5px dashed rgb(83, 59, 6);
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  color: transparent;
+}
+
+
+/* MARKERS */
+.finger {
+  background: rgb(0, 100, 200);
+  border: 3px solid #000;
+  border-radius: 20px;
+  height: 16px;
+  width: 16px;
+  z-index: 5;
+  position: absolute;
+  bottom: 0;
+  align-self: center;
+}
+
+.openString {
+  background:#fffff4;
+  border: 5px solid black;
+  border-radius: 20px;
+  height: 10px;
+  width: 10px;
+  z-index: 4;
+  position: absolute;
+  bottom: 5px;
+  left: 17px;
+}
+
+.mute {
+  font-weight: bolder;
+  background: #fffff4;
+  border: 5px solid #fffff4;
+  border-radius: 20px;
+  height: 10px;
+  width: 10px;
+  color: rgb(241, 47, 47);
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  font-size: 20px;
+  line-height: .5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fretMarker {
+  background: black;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  position: absolute;
+  z-index: 3;
+  bottom: 35%;
+  font-size: 10px;
+}
+
+/* STRINGS */
+.string .stringImg {
+  z-index: 2;
+  height: 100%;
+  width: 10%;
+  position: absolute;
+  right: 46%;
+  background: rgb(122, 118, 118);
+  box-shadow: 4px 1px 2px rgba(27, 27, 27, .5);
+  width: 3px;
+}
+#string1 .stringImg {
+  width: 12%;
+}
+#string2 .stringImg {
+  width: 10%;
+}
+#string3 .stringImg {
+  width: 8%;
+}
+#string4 .stringImg {
+  width: 6%;
+}
+
+/* FOOTER */
+footer {
+  background: rgba(114,224,232,1);
+  height: 30px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  margin-top: 20px;
+  z-index: 10;
+  color: #fffff4;
+}
+footer p {
+  position: relative;
+  margin: 5px 20px;
+}
+
+
+@media only screen
+  and (max-width: 800px) {
+    main {
+      flex-direction: column;
+    }
+    header {
+      width: 100%;
+    }
+    h1 {
+      font-size: 40px;
+    }
+
+    #leftAside {
+      justify-self: flex-start;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      margin: 0;
+      display: flex;
+    }
+    .legend {
+      border: 2px solid transparent;
+      border-radius: 0;
+      width: 33.3%;
+      padding: 0 30px;
+    }
+    #chartDisplay {
+      margin-top: 40px;
+      text-align: center;
+      border-radius: 30px;
+      align-self: center;
+      padding: 0px 20px 50px;
+    }
+    .chart {
+      height: 310px;
+      width: 310px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 40px;
+    }
+  }
+
+  @media only screen
+    and (max-width: 575px) {
+      header {
+        width: 100%;
+        height: 180px;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      #query {
+        display: flex;
+        flex-direction: column;
+      }      
+      #query select {
+        margin-bottom: 5px;
+      }
+
+      .legend {
+        align-self: flex-start;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+        height: 60px;
+      }
+      .legend p {
+        font-size: 14px;
+        margin: 0;
+      }
+
+      /* CHART DISPLAY */
+      /* #chartDisplay {
+        margin-top: 50px;
+        width: 75%;
+      }
+      .chart {
+        height: 80%;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .fretLocation {
+        width: 100%;
+        height: 16px;
+        margin: auto;
+      } */
+  }
+
+  @media only screen 
+  and (max-width: 480px) {
+    
+    /* CHART DISPLAY */
+  #chartDisplay {
+    width: 300px;
+  }
+
+  /* CHART SECTION */
+.chart {
+  height: 250px;
+  width: 249px;
+}
+
+.fretLocation {
+  width: 249px;
+  height: 16px;
+  background: black;
+  color: #fffff4;
+  margin: auto;
+}
+
+  } 
